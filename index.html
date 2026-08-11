@@ -1,268 +1,161 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechSolutions - Desenvolvimento Web Profissional</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TechSolutions: experiências digitais rápidas, acessíveis e orientadas a resultados.">
+  <meta name="theme-color" content="#080b14">
+  <title>TechSolutions | Produtos digitais que movem negócios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <i class="fas fa-code"></i>
-                    <span>TechSolutions</span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#services">Serviços</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Transformamos suas <span class="highlight">ideias</span> em realidade digital
-                </h1>
-                <p class="hero-description">
-                    Desenvolvemos websites modernos, responsivos e otimizados para o sucesso do seu negócio. 
-                    Da concepção à implementação, estamos aqui para você.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Começar Agora</a>
-                    <a href="#services" class="btn btn-secondary">Nossos Serviços</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="floating-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Desenvolvimento Web</h3>
-                    <p>Sites modernos e funcionais</p>
-                </div>
-                <div class="floating-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Design Responsivo</h3>
-                    <p>Perfeito em todos os dispositivos</p>
-                </div>
-                <div class="floating-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Performance</h3>
-                    <p>Velocidade e otimização</p>
-                </div>
-            </div>
+  <header class="site-header" data-header>
+    <nav class="nav shell" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="TechSolutions — início">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>Tech<span>Solutions</span></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#servicos">Soluções</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" aria-label="Alternar tema" title="Alternar tema">
+          <span class="theme-icon" aria-hidden="true">☼</span>
+        </button>
+        <a class="button button-small" href="#contato">Criar projeto <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="hero-grid shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Estratégia, design e tecnologia</p>
+          <h1>Ideias fortes merecem produtos <em>memoráveis</em></h1>
+          <p class="hero-text">Criamos experiências digitais rápidas, acessíveis e preparadas para transformar atenção em resultado.</p>
+          <div class="hero-actions">
+            <a class="button" href="#projetos">Explorar projetos <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#processo">Conhecer o processo <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="trust-row" aria-label="Características da entrega">
+            <span>Performance</span><i></i><span>Acessibilidade</span><i></i><span>Responsividade</span>
+          </div>
         </div>
+
+        <div class="hero-visual reveal" aria-label="Painel ilustrativo de projeto digital">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="dashboard-card">
+            <div class="dash-top"><span class="status-dot"></span><span>Projeto em evolução</span><b>TS / 26</b></div>
+            <div class="metric"><small>Experiência digital</small><strong>+ fluida</strong></div>
+            <div class="chart" aria-hidden="true">
+              <span style="--h:38%"></span><span style="--h:55%"></span><span style="--h:48%"></span><span style="--h:72%"></span><span style="--h:66%"></span><span style="--h:92%"></span>
+            </div>
+            <div class="dash-footer"><span>Design system</span><span>Web performance</span></div>
+          </div>
+          <div class="floating-note note-one"><span>01</span>Mobile first</div>
+          <div class="floating-note note-two"><span>02</span>Código limpo</div>
+        </div>
+      </div>
+      <div class="marquee" aria-hidden="true"><div>DESIGN • DESENVOLVIMENTO • PERFORMANCE • ACESSIBILIDADE • ESTRATÉGIA • DESIGN • DESENVOLVIMENTO • PERFORMANCE • ACESSIBILIDADE • ESTRATÉGIA •</div></div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nossos Serviços</h2>
-                <p>Oferecemos soluções completas para sua presença digital</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Design Moderno</h3>
-                    <p>Criamos interfaces atraentes e intuitivas que capturam a atenção dos seus visitantes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Desenvolvimento</h3>
-                    <p>Desenvolvemos websites robustos usando as mais modernas tecnologias do mercado.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>SEO Otimizado</h3>
-                    <p>Seu site será otimizado para aparecer nos primeiros resultados do Google.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Segurança</h3>
-                    <p>Implementamos as melhores práticas de segurança para proteger seus dados.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Manutenção</h3>
-                    <p>Oferecemos suporte contínuo para manter seu site sempre atualizado.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Analytics</h3>
-                    <p>Acompanhamos o desempenho do seu site com relatórios detalhados.</p>
-                </div>
-            </div>
-        </div>
+    <section class="section shell" id="servicos">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow"><span></span> O que fazemos</p><h2>Soluções que conectam negócio e experiência</h2></div>
+        <p>Do primeiro esboço à publicação, cada escolha tem um motivo: tornar sua presença digital mais clara, confiável e eficiente.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service-card reveal"><span class="card-number">01</span><div class="service-symbol">✦</div><h3>Landing pages</h3><p>Páginas focadas em conversão, com mensagem objetiva, navegação fluida e carregamento rápido.</p><ul><li>Arquitetura de conteúdo</li><li>Design responsivo</li><li>SEO técnico</li></ul></article>
+        <article class="service-card featured reveal"><span class="card-number">02</span><div class="service-symbol">⌘</div><h3>Produtos web</h3><p>Interfaces funcionais para transformar processos e ideias em experiências digitais intuitivas.</p><ul><li>UI e prototipação</li><li>Front-end moderno</li><li>Integrações</li></ul></article>
+        <article class="service-card reveal"><span class="card-number">03</span><div class="service-symbol">↗</div><h3>Evolução digital</h3><p>Diagnóstico e melhoria de projetos existentes com foco em qualidade, performance e manutenção.</p><ul><li>Auditoria de interface</li><li>Otimização</li><li>Acessibilidade</li></ul></article>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Sobre a TechSolutions</h2>
-                    <p>
-                        Somos uma equipe apaixonada por tecnologia e inovação. Com anos de experiência 
-                        no desenvolvimento web, ajudamos empresas de todos os tamanhos a estabelecer 
-                        uma presença digital forte e eficaz.
-                    </p>
-                    <p>
-                        Nossa missão é transformar ideias em soluções digitais que impulsionam o 
-                        crescimento dos nossos clientes. Trabalhamos com as mais modernas tecnologias 
-                        e seguimos as melhores práticas da indústria.
-                    </p>
-                    <div class="stats">
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Projetos Concluídos</p>
-                        </div>
-                        <div class="stat">
-                            <h3>100%</h3>
-                            <p>Clientes Satisfeitos</p>
-                        </div>
-                        <div class="stat">
-                            <h3>24/7</h3>
-                            <p>Suporte Disponível</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-users"></i>
-                        <p>Nossa Equipe</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section projects" id="projetos">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow"><span></span> Trabalho selecionado</p><h2>Projetos pensados para funcionar no mundo real</h2></div>
+          <p>Conceitos demonstrativos que combinam identidade, hierarquia visual e interações com propósito.</p>
         </div>
+        <div class="filter-row reveal" role="group" aria-label="Filtrar projetos">
+          <button class="filter active" type="button" data-filter="all">Todos</button>
+          <button class="filter" type="button" data-filter="produto">Produto</button>
+          <button class="filter" type="button" data-filter="landing">Landing page</button>
+          <button class="filter" type="button" data-filter="experiencia">Experiência</button>
+        </div>
+        <div class="project-grid">
+          <article class="project-card project-large reveal" data-category="produto">
+            <div class="project-art art-one"><div class="mock-window"><div></div><strong>DATA / FLOW</strong><span></span><span></span><span></span></div></div>
+            <div class="project-info"><div><span>Produto digital · 2026</span><h3>DataFlow Dashboard</h3></div><p>Informação complexa transformada em decisões simples</p></div>
+          </article>
+          <article class="project-card reveal" data-category="landing">
+            <div class="project-art art-two"><b>NOIR</b><i>studio</i></div>
+            <div class="project-info"><div><span>Landing page · 2026</span><h3>Noir Studio</h3></div><p>Identidade editorial com presença</p></div>
+          </article>
+          <article class="project-card reveal" data-category="experiencia">
+            <div class="project-art art-three"><div class="phone"><span>MOVE</span><div></div><small>07:42</small></div></div>
+            <div class="project-info"><div><span>Experiência · 2026</span><h3>Move App</h3></div><p>Uma jornada móvel direta e humana</p></div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Entre em Contato</h2>
-                <p>Pronto para começar seu projeto? Vamos conversar!</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>contato@techsolutions.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Telefone</h4>
-                            <p>(11) 99999-9999</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Endereço</h4>
-                            <p>São Paulo, SP - Brasil</p>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Seu Nome" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Seu Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Assunto" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Sua Mensagem" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-                </form>
-            </div>
-        </div>
+    <section class="section shell process" id="processo">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow"><span></span> Como trabalhamos</p><h2>Clareza em cada etapa</h2></div>
+        <p>Um processo enxuto reduz ruído, antecipa decisões e mantém o projeto avançando na direção certa.</p>
+      </div>
+      <ol class="process-list">
+        <li class="reveal"><span>01</span><div><h3>Descobrir</h3><p>Objetivos, público, contexto e oportunidades.</p></div><b>↘</b></li>
+        <li class="reveal"><span>02</span><div><h3>Desenhar</h3><p>Conteúdo, interface e experiência em sintonia.</p></div><b>↘</b></li>
+        <li class="reveal"><span>03</span><div><h3>Construir</h3><p>Código semântico, responsivo e fácil de manter.</p></div><b>↘</b></li>
+        <li class="reveal"><span>04</span><div><h3>Evoluir</h3><p>Testes, publicação e melhoria contínua.</p></div><b>✓</b></li>
+      </ol>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <i class="fas fa-code"></i>
-                        <span>TechSolutions</span>
-                    </div>
-                    <p>Transformando ideias em realidade digital desde 2020.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#services">Serviços</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#contact">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li><a href="#">Desenvolvimento Web</a></li>
-                        <li><a href="#">Design UI/UX</a></li>
-                        <li><a href="#">SEO</a></li>
-                        <li><a href="#">Manutenção</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> contato@techsolutions.com</li>
-                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
-                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 TechSolutions. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <section class="section shell faq-section">
+      <div class="faq-intro reveal"><p class="eyebrow"><span></span> Perguntas frequentes</p><h2>Antes de começar</h2><p>Respostas diretas para as dúvidas mais comuns sobre um novo projeto.</p></div>
+      <div class="faq-list">
+        <details class="reveal"><summary>O site funciona bem no celular?<span>+</span></summary><p>Sim. A interface é criada com abordagem mobile first e testada em diferentes larguras de tela.</p></details>
+        <details class="reveal"><summary>O projeto pode crescer depois?<span>+</span></summary><p>Sim. A estrutura modular facilita a inclusão de novas páginas, seções e integrações.</p></details>
+        <details class="reveal"><summary>Como funciona o contato do formulário?<span>+</span></summary><p>Ao enviar, a página abre uma mensagem pronta no WhatsApp. Nenhum dado é armazenado no site.</p></details>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="contact" id="contato">
+      <div class="shell contact-grid">
+        <div class="contact-copy reveal"><p class="eyebrow"><span></span> Vamos conversar</p><h2>Tem uma ideia? Vamos dar forma a ela</h2><p>Conte um pouco sobre o desafio. A mensagem será preparada e aberta diretamente no WhatsApp.</p><div class="direct-links"><a href="mailto:filipi95527646@gmail.com">filipi95527646@gmail.com ↗</a><a href="https://www.linkedin.com/in/filipe-fran%C3%A7a-de-oliveira" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div>
+        <form class="contact-form reveal" data-contact-form novalidate>
+          <div class="field-row"><label>Seu nome<input name="name" autocomplete="name" required placeholder="Como posso te chamar?"></label><label>Seu e-mail<input type="email" name="email" autocomplete="email" required placeholder="voce@exemplo.com"></label></div>
+          <label>Qual é o projeto?<select name="project" required><option value="">Selecione uma opção</option><option>Landing page</option><option>Site institucional</option><option>Produto web</option><option>Melhoria de projeto existente</option><option>Outro desafio</option></select></label>
+          <label>Conte um pouco<textarea name="message" rows="4" required placeholder="Objetivo, prazo ou contexto do projeto"></textarea></label>
+          <div class="form-footer"><small>Ao enviar, você será direcionado ao WhatsApp</small><button class="button" type="submit">Preparar mensagem <span>↗</span></button></div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-top"><a class="brand" href="#inicio"><span class="brand-mark">T</span><span>Tech<span>Solutions</span></span></a><p>Produtos digitais com clareza, propósito e personalidade</p><a href="#inicio">Voltar ao topo ↑</a></div>
+    <div class="shell footer-bottom"><span>© <span data-year></span> TechSolutions</span><span>Desenvolvido por Filipe França</span></div>
+  </footer>
 </body>
 </html>
