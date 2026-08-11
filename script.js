@@ -1,107 +1,101 @@
-const root = document.documentElement;
 const header = document.querySelector('[data-header]');
-const menuButton = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-const themeButton = document.querySelector('.theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const menuButton = document.querySelector('.menu-button');
+const menu = document.querySelector('.menu');
+const form = document.querySelector('[data-booking-form]');
+const dateInput = form.elements.date;
 
-const savedTheme = localStorage.getItem('techsolutions-theme');
-if (savedTheme) root.dataset.theme = savedTheme;
-
-function updateThemeIcon() {
-  themeIcon.textContent = root.dataset.theme === 'dark' ? '☼' : '◐';
-}
-updateThemeIcon();
-
-themeButton.addEventListener('click', () => {
-  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('techsolutions-theme', root.dataset.theme);
-  updateThemeIcon();
-});
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 30), { passive: true });
 
 menuButton.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+  const open = menu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.querySelector('b').textContent = open ? 'Fechar menu' : 'Abrir menu';
 });
 
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
-  });
-});
+document.querySelectorAll('.menu a').forEach(link => link.addEventListener('click', () => {
+  menu.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+}));
 
-window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 24), { passive: true });
+const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (entry.isIntersecting) {
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  }
+}), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
 
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (!entry.isIntersecting) return;
+  document.querySelectorAll('.menu a').forEach(link => link.classList.toggle('active', link.hash === `#${entry.target.id}`));
+}), { rootMargin: '-35% 0px -58%' });
+document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
 
-const sections = [...document.querySelectorAll('main section[id]')];
-const menuLinks = [...document.querySelectorAll('.nav-links a')];
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    menuLinks.forEach(link => link.classList.toggle('active', link.hash === `#${entry.target.id}`));
-  });
-}, { rootMargin: '-35% 0px -55%' });
-sections.forEach(section => sectionObserver.observe(section));
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+dateInput.min = tomorrow.toISOString().split('T')[0];
 
-document.querySelectorAll('.filter').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
-    button.classList.add('active');
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.classList.toggle('hidden', button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter);
-    });
-  });
-});
-
-if (!reduceMotion && matchMedia('(pointer:fine)').matches) {
-  const glow = document.querySelector('.cursor-glow');
-  window.addEventListener('pointermove', event => {
-    glow.style.left = `${event.clientX}px`;
-    glow.style.top = `${event.clientY}px`;
-  }, { passive: true });
+function updateSummary() {
+  const selected = form.querySelector('input[name="service"]:checked');
+  const [name = 'Nenhum', price = '0'] = selected ? selected.value.split('|') : [];
+  document.querySelector('[data-summary-service]').textContent = name;
+  document.querySelector('[data-summary-price]').textContent = `R$ ${price}`;
 }
 
-document.querySelector('[data-contact-form]').addEventListener('submit', event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const status = form.querySelector('.form-status');
-  const fields = [...form.querySelectorAll('[required]')];
-  fields.forEach(field => field.classList.toggle('invalid', !field.checkValidity()));
+form.querySelectorAll('input[name="service"]').forEach(input => input.addEventListener('change', updateSummary));
 
+document.querySelectorAll('.select-service').forEach(button => button.addEventListener('click', () => {
+  const card = button.closest('.service');
+  const wanted = `${card.dataset.service}|${card.dataset.price}|${card.dataset.duration}`;
+  const option = [...form.querySelectorAll('input[name="service"]')].find(input => input.value === wanted);
+  if (option) {
+    option.checked = true;
+    updateSummary();
+  }
+  document.querySelector('#agenda').scrollIntoView({ behavior: 'smooth' });
+}));
+
+const phone = form.elements.phone;
+phone.addEventListener('input', () => {
+  let value = phone.value.replace(/\D/g, '').slice(0, 11);
+  if (value.length > 6) value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+  else if (value.length > 2) value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+  phone.value = value;
+});
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const status = form.querySelector('.form-status');
+  [...form.querySelectorAll('[required]')].forEach(field => field.classList.toggle('invalid', !field.checkValidity()));
   if (!form.checkValidity()) {
-    status.textContent = 'Confira os campos destacados antes de continuar.';
-    fields.find(field => !field.checkValidity())?.focus();
+    status.textContent = 'Preencha todos os campos destacados para continuar.';
+    form.querySelector('[required]:invalid')?.focus();
     return;
   }
 
   const data = new FormData(form);
-  const text = [
-    'Olá, Filipe! Vi o projeto TechSolutions e gostaria de conversar.',
-    '',
-    `Nome: ${data.get('name')}`,
-    `E-mail: ${data.get('email')}`,
-    `Tipo de projeto: ${data.get('project')}`,
-    `Contexto: ${data.get('message')}`
+  const [service, price, duration] = data.get('service').split('|');
+  const formattedDate = new Date(`${data.get('date')}T12:00:00`).toLocaleDateString('pt-BR');
+  const message = [
+    'Olá! Gostaria de solicitar um agendamento na Driving Cut.', '',
+    `Cliente: ${data.get('name')}`,
+    `Telefone: ${data.get('phone')}`,
+    `Serviço: ${service}`,
+    `Valor informado: R$ ${price}`,
+    `Duração estimada: ${duration} min`,
+    `Data: ${formattedDate}`,
+    `Horário: ${data.get('time')}`,
+    `Endereço: ${data.get('address')}`, '',
+    'Aguardo a confirmação do horário.'
   ].join('\n');
 
-  status.textContent = 'Abrindo o WhatsApp com sua mensagem…';
-  window.open(`https://wa.me/5561992087470?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  status.textContent = 'Abrindo o WhatsApp para confirmar seu pedido…';
+  window.open(`https://wa.me/5561992087470?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 });
 
-document.querySelectorAll('input, select, textarea').forEach(field => {
-  field.addEventListener('input', () => field.classList.remove('invalid'));
-});
+form.querySelectorAll('input,select').forEach(field => field.addEventListener('input', () => {
+  field.classList.remove('invalid');
+  form.querySelector('.form-status').textContent = '';
+}));
 
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
