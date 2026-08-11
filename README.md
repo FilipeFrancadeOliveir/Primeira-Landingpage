@@ -6,11 +6,13 @@ Landing page responsiva para uma barbearia móvel na região do P. Sul, em Ceil�
 
 - catálogo de serviços com preço e duração;
 - seleção rápida de serviço;
+- agenda semanal dinâmica com horários livres e ocupados;
 - escolha de data e horário;
 - máscara de telefone e validação do formulário;
 - resumo do agendamento em tempo real;
 - mensagem de WhatsApp gerada automaticamente;
 - galeria responsiva com imagens em WebP;
+- catálogo fictício de cortes e galeria da experiência de atendimento;
 - menu mobile, navegação ativa e animações de entrada;
 - suporte a movimento reduzido e navegação por teclado.
 
