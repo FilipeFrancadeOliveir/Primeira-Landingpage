@@ -35,6 +35,41 @@ const tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
 dateInput.min = tomorrow.toISOString().split('T')[0];
 
+const weekBoard = document.querySelector('[data-week-board]');
+const weekDays = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+const weekSlots = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+
+function localISO(date) {
+  const offset = date.getTimezoneOffset();
+  return new Date(date.getTime() - offset * 60000).toISOString().split('T')[0];
+}
+
+for (let dayOffset = 1; dayOffset <= 7 && weekBoard.children.length < 6; dayOffset++) {
+  const date = new Date();
+  date.setDate(date.getDate() + dayOffset);
+  if (date.getDay() === 0) continue;
+  const iso = localISO(date);
+  const column = document.createElement('div');
+  column.className = 'day-column';
+  const slots = weekSlots.map((time, index) => {
+    const busy = (date.getDate() + index * 2) % 5 === 0 || (date.getDay() === 6 && index > 5);
+    return `<button class="time-slot" type="button" data-date="${iso}" data-time="${time}" ${busy ? 'disabled aria-label="Horário ocupado"' : ''}>${time}</button>`;
+  }).join('');
+  column.innerHTML = `<div class="day-head"><b>${weekDays[date.getDay()]}</b><span>${String(date.getDate()).padStart(2, '0')}</span></div><div class="time-slots">${slots}</div>`;
+  weekBoard.appendChild(column);
+}
+
+weekBoard.addEventListener('click', event => {
+  const slot = event.target.closest('.time-slot:not(:disabled)');
+  if (!slot) return;
+  weekBoard.querySelectorAll('.time-slot').forEach(item => item.classList.remove('selected'));
+  slot.classList.add('selected');
+  dateInput.value = slot.dataset.date;
+  form.elements.time.value = slot.dataset.time;
+  document.querySelector('#agenda').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => form.querySelector('input[name="service"]:checked')?.focus(), 600);
+});
+
 function updateSummary() {
   const selected = form.querySelector('input[name="service"]:checked');
   const [name = 'Nenhum', price = '0'] = selected ? selected.value.split('|') : [];
